@@ -1,30 +1,37 @@
 🏠 California Housing Price Prediction
 
-This project builds a Machine Learning pipeline using Scikit-Learn to predict median_house_value from housing data.
+Machine Learning pipeline using Scikit-Learn to predict median_house_value from housing data.
 
-It includes:
+📌 Features
 
-✅ Data preprocessing pipeline
+Stratified train-test split
 
-✅ Stratified train-test split
+Data preprocessing pipeline
 
-✅ Random Forest Regressor model
+RandomForestRegressor model
 
-✅ Model + Pipeline saving using joblib
+Model + Pipeline saved using joblib
 
-✅ Inference on new input data
+Inference on new input data
 
-📂 Project Structure
-│── housing2.csv        # Training dataset
-│── input.csv           # New data for prediction
-│── output.csv          # Predictions saved here
-│── model.pkl           # Saved trained model
-│── pipeline.pkl        # Saved preprocessing pipeline
-│── main.py             # Main script (your code)
-│── README.md           # Project documentation
+## 📂 Project Structure
+
+```text
+.
+├── housing2.csv      # Training dataset
+├── input.csv         # New data for prediction
+├── output.csv        # Predictions saved here
+├── model.pkl         # Saved trained model
+├── pipeline.pkl      # Saved preprocessing pipeline
+├── main.py           # Main script
+└── README.md         # Project documentation
+```
+
 
 ⚙️ How It Works
-🔹 1. Training Phase (Runs Only If model.pkl Does Not Exist)
+1️⃣ Training Phase
+
+(Runs only if model.pkl does NOT exist)
 
 Loads dataset from housing2.csv
 
@@ -32,25 +39,11 @@ Creates income categories using median_income
 
 Performs Stratified Shuffle Split
 
-Separates:
+Separates features and labels
 
-Features
+Builds preprocessing pipeline
 
-Labels (median_house_value)
-
-Builds preprocessing pipeline:
-
-Numerical features:
-
-Median imputation
-
-Standard scaling
-
-Categorical feature:
-
-One-hot encoding (ocean_proximity)
-
-Trains a RandomForestRegressor
+Trains RandomForestRegressor
 
 Saves:
 
@@ -58,35 +51,31 @@ model.pkl
 
 pipeline.pkl
 
-🔹 2. Inference Phase (Runs If model.pkl Exists)
+2️⃣ Inference Phase
+
+(Runs if model.pkl exists)
 
 Loads saved model and pipeline
 
 Reads new data from input.csv
 
-Applies preprocessing pipeline
+Transforms input using pipeline
 
 Generates predictions
 
-Saves predictions to output.csv
+Saves results to output.csv
 
-🧠 Machine Learning Details
-🔹 Model Used
-
+## 🧠 Machine Learning Details
+```text
+Model Used
 RandomForestRegressor
 
-Why Random Forest?
-
-Handles non-linearity well
-
-Works great with mixed feature types
-
-Reduces overfitting using ensemble learning
-
-🔹 Preprocessing Steps
+Preprocessing Pipeline
 Feature Type	Processing
 Numerical	Median Imputation + StandardScaler
 Categorical	OneHotEncoder (handle_unknown="ignore")
+```
+
 📦 Requirements
 
 Install dependencies:
@@ -94,47 +83,33 @@ Install dependencies:
 pip install pandas numpy scikit-learn joblib
 
 ▶️ How To Run
-Step 1: Training
+🔹 Step 1: Training
 
-Ensure:
+Make sure housing2.csv exists.
 
-housing2.csv
+python main.py
 
 
-exists in the directory.
+This creates:
+
+model.pkl
+pipeline.pkl
+
+🔹 Step 2: Prediction
+
+Create input.csv (same columns except target)
 
 Run:
 
 python main.py
 
 
-This will create:
-
-model.pkl
-pipeline.pkl
-
-Step 2: Prediction
-
-Create input.csv (same feature columns except median_house_value)
-
-Run the script again:
-
-python main.py
-
-
-Predictions will be saved in:
+Predictions will be saved to:
 
 output.csv
 
-📝 Important Notes
-
-input.csv must have exact same feature columns as training data (except target column).
-
-ocean_proximity must be included.
-
-If new unseen categories appear → OneHotEncoder safely ignores them.
-
-🔁 Pipeline Design
+## 🔁 Pipeline Flow
+```text
 Raw Data
    ↓
 ColumnTransformer
@@ -149,19 +124,15 @@ RandomForestRegressor
    ↓
 Prediction
 
-🚀 Future Improvements
+```
 
-Add hyperparameter tuning (GridSearchCV)
-
-Add model evaluation metrics (RMSE, MAE)
-
-Add logging instead of print statements
-
-Add Docker support
-
-Convert to REST API using Flask / FastAPI
-
+## 🚀 Future Improvements
+```text
+Hyperparameter tuning (GridSearchCV)
+Add evaluation metrics (RMSE, MAE)
+Add logging system
+Convert to REST API (Flask / FastAPI)
+Docker support
+```
 👨‍💻 Author
-
 Prathmesh Nirmal
-Machine Learning Project
